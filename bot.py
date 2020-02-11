@@ -7,13 +7,15 @@ from dotenv import load_dotenv
 # CONFIG
 load_dotenv()
 PREFIX_CHAR = os.getenv('DISCORD_PREFIX', default='!')
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN', default='')
 GUILD = os.getenv('DISCORD_GUILD')
-EPGP_LOGS_CHANNEL = os.getenv('EPGP_LOGS_CHANNEL', default='epgp-standings-log')
+EPGP_LOGS_CHANNEL = os.getenv(
+    'EPGP_LOGS_CHANNEL', default='epgp-standings-log')
 
 PREFIX = f"{PREFIX_CHAR}epgp"
 
 client = discord.Client()
+
 
 @client.event
 async def on_ready():
@@ -24,6 +26,7 @@ async def on_ready():
         f'{client.user} is connected to the following guild:\n'
         f'{guild.name}(id: {guild.id})'
     )
+
 
 @client.event
 async def on_message(message):
