@@ -9,6 +9,7 @@ load_dotenv()
 PREFIX_CHAR = os.getenv('DISCORD_PREFIX', default='!')
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+EPGP_LOGS_CHANNEL = os.getenv('EPGP_LOGS_CHANNEL', default='epgp-standings-log')
 
 PREFIX = f"{PREFIX_CHAR}epgp"
 
@@ -29,7 +30,9 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.lower().startswith(PREFIX):
+    if message.channel.name == EPGP_LOGS_CHANNEL and message.attachments:
+        commands.handle_fileupload(message.attachments[0])
+    elif message.content.lower().startswith(PREFIX):
         response = commands.handle_message(message.content, prefix=PREFIX)
         if response:
             await message.channel.send(response)
