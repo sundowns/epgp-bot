@@ -31,7 +31,7 @@ async def on_message(message):
         return
 
     if message.channel.name == EPGP_LOGS_CHANNEL and message.attachments:
-        commands.handle_fileupload(message.attachments[0])
+        await commands.handle_fileupload(message.attachments[0])
     elif message.content.lower().startswith(PREFIX):
         response = commands.handle_message(message.content, prefix=PREFIX)
         if response:
