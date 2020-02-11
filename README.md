@@ -11,3 +11,9 @@ The goal of this project is to create a discord bot to visualise and query EPGP 
 ## Installation
 
 `pip install -U discord.py`
+`pip install python-dotenv`
+
+## Usage
+
+Create a `.env` file (copy from `.env.template`) and populate it with a discord token.
+`python bot.py`
