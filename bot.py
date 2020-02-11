@@ -6,9 +6,11 @@ from dotenv import load_dotenv
 
 # CONFIG
 load_dotenv()
-PREFIX = os.getenv('DISCORD_PREFIX', default='!')
+PREFIX_CHAR = os.getenv('DISCORD_PREFIX', default='!')
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+
+PREFIX = f"{PREFIX_CHAR}epgp"
 
 client = discord.Client()
 
@@ -27,8 +29,8 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.lower().startswith(f"{PREFIX}epgp"):
-        response = commands.handle_message(message.content)
+    if message.content.lower().startswith(PREFIX):
+        response = commands.handle_message(message.content, prefix=PREFIX)
         if response:
             await message.channel.send(response)
 
