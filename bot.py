@@ -1,11 +1,11 @@
-
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 import discord
 import commands
-from dotenv import load_dotenv
 
 # CONFIG
-load_dotenv()
 PREFIX_CHAR = os.getenv('DISCORD_PREFIX', default='!')
 TOKEN = os.getenv('DISCORD_TOKEN', default='')
 GUILD = os.getenv('DISCORD_GUILD')
